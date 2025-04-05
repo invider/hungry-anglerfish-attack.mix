@@ -1,10 +1,10 @@
 const Z = 99
 
 function draw() {
-    const portal = mod['aqua-buf']
+    const portal = pin.aqua
 
-    const w = rx(.75)
-    const h = ry(.75)
+    const w = rx(.4)
+    const h = ry(.4)
     const hb = (ctx.width - w)/2
     const vb = (ctx.height - h)/2
     smooth()
