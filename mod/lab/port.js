@@ -1,5 +1,5 @@
 const Z = 0
 
 function draw() {
-    background('#151720')
+    ctx.clearRect(0, 0, ctx.width, ctx.height)
 }
