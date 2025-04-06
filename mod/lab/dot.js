@@ -21,6 +21,6 @@ function evo(dt) {
 }
 
 function draw() {
-    fill('#4040ab')
+    fill('#008e6a')
     circle(x, y, 5)
 }

@@ -1,13 +1,26 @@
 const Z = 0
 
 function draw() {
-    //ctx.clearRect(0, 0, ctx.width, ctx.height)
-    background('#165955')
+    const w = ctx.width,
+          h = ctx.height
 
-    stroke('#39bfbf')
+    //ctx.clearRect(0, 0, ctx.width, ctx.height)
+    //background('#165955')
+    const gradient = ctx.createLinearGradient(0, 0, 0, h)
+    gradient.addColorStop(0, '#39bfbf')
+    gradient.addColorStop(.3, '#155955')
+    gradient.addColorStop(.7, '#004938')
+    gradient.addColorStop(1, '#010d0d')
+    fill(gradient)
+    rect(0, 0, w, h)
+    
+    stroke('#ffff00')
     lineWidth(4)
-    rect(0, 0, ctx.width, ctx.height)
+    rect(0, 0, w, h)
 
     fill('#b2faff')
     rect(100, 100, 20, 20)
+
+    fill('#004938')
+    rect(200, 200, 20, 20)
 }
