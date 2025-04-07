@@ -3,6 +3,7 @@ const Z = 97
 const B = 10
 
 function draw() {
+    if (!env.debugBuffers) return
     const portal = pin.aqua
 
     const w = rx(.25)

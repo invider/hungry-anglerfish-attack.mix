@@ -3,6 +3,7 @@ const Z = 95
 const B = 10
 
 function draw() {
+    if (!env.debugBuffers) return
     const portal = pin.backdrop
 
     const w = rx(.25)
