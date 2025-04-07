@@ -1,8 +1,10 @@
-attribute vec3 aVertexPosition;
+#version 300 es
 
-attribute vec2 aTextureCoord;
+in vec3 aVertexPosition;
 
-varying highp vec2 vTextureCoord;
+in vec2 aTextureCoord;
+
+out highp vec2 vTextureCoord;
 
 void main(void) {
     gl_Position = vec4(aVertexPosition, 1.0);
