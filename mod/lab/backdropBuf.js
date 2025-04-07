@@ -1,14 +1,14 @@
-const Z = 97
+const Z = 95
 
 const B = 10
 
 function draw() {
-    const portal = pin.aqua
+    const portal = pin.backdrop
 
     const w = rx(.25)
     const h = ry(.25)
     const hb = ctx.width - w - B
-    const vb = ctx.height - h - B
+    const vb = B
     smooth()
     image(portal.ctx.canvas, hb, vb, w, h)
 

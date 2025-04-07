@@ -1,4 +1,6 @@
 const faceLayer = {
     DNA: 'Layer',
-    Z:   5,
+    Z:   7,
+    scale:  1,
+    hidden: false,
 }

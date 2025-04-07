@@ -2,7 +2,8 @@ class Layer {
 
     constructor(st) {
         augment(this, {
-            Z: 5,
+            Z:        5,
+            scale:    1,
             vertices: [
                 // left triangle
                 -1,  1,  0,
@@ -27,6 +28,9 @@ class Layer {
         log('setting up buffers...')
 
         // vertices
+        for (let i = 0; i < this.vertices.length; i++) {
+            this.vertices[i] *= this.scale
+        }
         const verticeBuffer = gl.createBuffer()
         gl.bindBuffer(gl.ARRAY_BUFFER, verticeBuffer)
         gl.bufferData(
@@ -47,11 +51,15 @@ class Layer {
         this.textureCoordBuffer = textureCoordBuffer
     }
 
+    fixCanvas() {
+        return pin.aqua.canvas
+    }
+
     fixTexture() {
         //return res.texture.compass.tid
         const tid = gl.createTexture()
         gl.bindTexture(gl.TEXTURE_2D, tid)
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, pin.aqua.canvas)
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.fixCanvas())
         gl.generateMipmap(gl.TEXTURE_2D)
         gl.bindTexture(gl.TEXTURE_2D, null)
         this.fixedTexture = tid
@@ -64,11 +72,6 @@ class Layer {
     }
 
     draw() {
-        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height)
-        gl.clearColor(.2, .2, .2, 1.0)
-        gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT )
-        //gl.useProgram(pin.glProg.main)
-
         const vertexPositionAttribute = gl.getAttribLocation(pin.glProg.main, 'aVertexPosition')
         gl.enableVertexAttribArray(vertexPositionAttribute)
         gl.bindBuffer(gl.ARRAY_BUFFER, this.verticeBuffer)
