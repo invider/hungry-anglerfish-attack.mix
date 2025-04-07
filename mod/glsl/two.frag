@@ -54,6 +54,7 @@ void main(void) {
 
     float lightFactor = 1.0 - clamp((dist - lightR1)/(lightR2 - lightR1), 0.0, 1.0);
 
+    //fragColor = texture(uTextureSampler, vTextureCoord);
+    fragColor = blur9(uTextureSampler, vTextureCoord, vec2(250.0, 200.0), vec2(0.0, 1.0));
     //fragColor = blur9(uTextureSampler, vTextureCoord, vec2(250.0, 200.0), vec2(0.0, 1.0)) * lightFactor;
-    fragColor = texture(uTextureSampler, vTextureCoord);
 }

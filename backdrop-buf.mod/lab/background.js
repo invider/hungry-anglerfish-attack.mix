@@ -14,10 +14,8 @@ function draw() {
     fill(gradient)
     rect(0, 0, w, h)
     
-    stroke('#ffff00')
-    lineWidth(4)
-    rect(0, 0, w, h)
-
-    fill('#fffabe')
-    rect(160, 120, 40, 40)
+    // highlight edges
+    //stroke('#ffff00')
+    //lineWidth(4)
+    //rect(0, 0, w, h)
 }

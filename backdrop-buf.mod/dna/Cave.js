@@ -8,6 +8,7 @@ class Fragment {
             x:      0,
             y:      0,
             w:      50 + rnd() * 150,
+            speed:  0,
         }, st)
 
         let firstP
@@ -108,10 +109,11 @@ class Cave {
     }
 
     rightEdge() {
-        return this.x + ctx.width
+        return this.x + 1.5*ctx.width
     }
 
     evo(dt) {
+        this.x += this.speed * dt
         if (this.lastFragment().rightEdge() < this.rightEdge()) {
             this.expandRange()
         }
@@ -120,10 +122,10 @@ class Cave {
     draw() {
         save()
         if (this.flip) {
-            translate(this.x, this.y + ctx.height)
+            translate(-this.x, this.y + ctx.height)
             scale(1, -1)
         } else {
-            translate(this.x, this.y)
+            translate(-this.x, this.y)
         }
 
         this.h = ry(this.rh)
