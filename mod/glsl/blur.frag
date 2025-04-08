@@ -3,6 +3,8 @@ precision highp float;
 
 in vec2 vTextureCoord;
 
+uniform vec2 lightPos2;
+uniform vec2 lightRange;
 uniform sampler2D uTextureSampler;
 
 out vec4 fragColor;
@@ -44,17 +46,19 @@ vec4 blur13(sampler2D image, vec2 uv, vec2 resolution, vec2 direction) {
 }
 
 void main(void) {
-    //gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    //fragColor = texture(uTextureSampler, vTextureCoord);
-
-    float lightR1 = 100.0;
-    float lightR2 = 900.0;
-    vec4 lightPos = vec4(550.0, 400.0, 0.0, 0.0);
+    vec4  lightPos = vec4(lightPos2.xy, 0.0, 0.0);
     float dist = length(lightPos.xyz - gl_FragCoord.xyz);
 
-    float lightFactor = 1.0 - clamp((dist - lightR1)/(lightR2 - lightR1), 0.0, 1.0);
+    float lightFactor = 1.0 - clamp((dist - lightRange[0])/(lightRange[1] - lightRange[0]), 0.0, 1.0);
+
+    //float lightR1 = 100.0;
+    //float lightR2 = 900.0;
+    //vec4 lightPos = vec4(550.0, 400.0, 0.0, 0.0);
+    //float dist = length(lightPos.xyz - gl_FragCoord.xyz);
+    //float lightFactor = 1.0 - clamp((dist - lightR1)/(lightR2 - lightR1), 0.0, 1.0);
 
     //fragColor = texture(uTextureSampler, vTextureCoord);
-    fragColor = blur9(uTextureSampler, vTextureCoord, vec2(250.0, 200.0), vec2(0.0, 1.0));
-    //fragColor = blur9(uTextureSampler, vTextureCoord, vec2(250.0, 200.0), vec2(0.0, 1.0)) * lightFactor;
+    //fragColor = blur9(uTextureSampler, vTextureCoord, vec2(250.0, 200.0), vec2(0.0, 1.0));
+    vec4 bc = blur9(uTextureSampler, vTextureCoord, vec2(250.0, 200.0), vec2(0.0, 1.0));
+    fragColor = vec4(bc.xyz * lightFactor, bc.a);
 }

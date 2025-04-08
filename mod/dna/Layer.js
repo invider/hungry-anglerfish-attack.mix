@@ -75,9 +75,12 @@ class Layer {
         this.glProg = pin.glProg.basic
     }
 
+    fixUniforms() {}
+
     draw() {
         this.fixProgram()
         gl.useProgram(this.glProg)
+        this.fixUniforms()
 
         const vertexPositionAttribute = gl.getAttribLocation(this.glProg, 'aVertexPosition')
         gl.enableVertexAttribArray(vertexPositionAttribute)
