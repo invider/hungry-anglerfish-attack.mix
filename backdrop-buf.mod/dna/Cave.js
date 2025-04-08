@@ -21,23 +21,19 @@ class Fragment {
 
         const cp = []
 
-        log('starting fracture at: ' + firstP[0])
         this.fracture(firstP, lastP, 3, cp)
         cp.push(lastP)
-        log('ending fracture at: ' + lastP[0])
 
         this.cp = cp
     }
 
     fracture(fp, lp, iter, cp) {
         const mp = [ fp[0] + .5*(lp[0] - fp[0]), fp[1] + rnd() * (lp[1] - fp[1]) ]
-        log('midpoint @' + mp[0])
 
         if (iter > 0) {
             this.fracture(fp, mp, iter - 1, cp)
             this.fracture(mp, lp, iter - 1, cp)
         } else {
-            log('bottom left: ' + fp[0] + ' -> ' + mp[0])
             cp.push(fp)
             cp.push(mp)
         }

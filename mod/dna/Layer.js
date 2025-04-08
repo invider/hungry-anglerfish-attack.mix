@@ -71,18 +71,25 @@ class Layer {
         gl.deleteTexture(this.fixedTexture)
     }
 
+    fixProgram() {
+        this.glProg = pin.glProg.basic
+    }
+
     draw() {
-        const vertexPositionAttribute = gl.getAttribLocation(pin.glProg.main, 'aVertexPosition')
+        this.fixProgram()
+        gl.useProgram(this.glProg)
+
+        const vertexPositionAttribute = gl.getAttribLocation(this.glProg, 'aVertexPosition')
         gl.enableVertexAttribArray(vertexPositionAttribute)
         gl.bindBuffer(gl.ARRAY_BUFFER, this.verticeBuffer)
         gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0)
 
-        const textureCoordAttribute = gl.getAttribLocation(pin.glProg.main, 'aTextureCoord')
+        const textureCoordAttribute = gl.getAttribLocation(this.glProg, 'aTextureCoord')
         gl.enableVertexAttribArray(textureCoordAttribute)
         gl.bindBuffer(gl.ARRAY_BUFFER, this.textureCoordBuffer)
         gl.vertexAttribPointer(textureCoordAttribute, 2, gl.FLOAT, false, 0, 0)
 
-        const samplerLocation = gl.getUniformLocation(pin.glProg.main, 'uSampler')
+        const samplerLocation = gl.getUniformLocation(this.glProg, 'uSampler')
 
         // Tell WebGL we want to affect texture unit 0
         gl.activeTexture(gl.TEXTURE0)
