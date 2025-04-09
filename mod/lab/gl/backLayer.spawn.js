@@ -20,7 +20,7 @@ const backLayer = {
 
         gl.uniform2f( gl.getUniformLocation(this.glProg, 'lightPos2'), lx, ly )
         gl.uniform2f( gl.getUniformLocation(this.glProg, 'lightRange'),
-            rx( this.lightRangeRel[0] ),
+            ry( this.lightRangeRel[0] ),
             ry( this.lightRangeRel[1] * lightFactor2 ),
         )
     }

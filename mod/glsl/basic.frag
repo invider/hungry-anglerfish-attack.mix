@@ -23,5 +23,8 @@ void main(void) {
     float lightFactor = 1.0 - clamp((dist - lightRange[0])/(lightRange[1] - lightRange[0]), 0.0, 1.0);
 
     //fragColor = texture(uTextureSampler, vTextureCoord);
-    fragColor = texture(uTextureSampler, vTextureCoord) * lightFactor;
+    //fragColor = texture(uTextureSampler, vTextureCoord) * lightFactor;
+    vec4 fc = texture(uTextureSampler, vTextureCoord);
+    //fragColor = vec4(fc.xyz * lightFactor, fc.a);
+    fragColor = fc;
 }
